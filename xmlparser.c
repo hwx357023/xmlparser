@@ -202,22 +202,22 @@ int parser_node_start(XML_NODE* parent, char* p, char** ppEnd)
 		s = *ppEnd;
 		SKIP_BLANK(s);
 
-    	JUMP_IF(*s!='<', "parser tag %s",name);
-    	e = s;
-    	s++;
-    
-    	SKIP_SPACE(s);
-    	if(*s=='/')
-    	{
-    		s++;
-    		goto node_end;
-    	}
-    	else
-    	{
-    		s = e;
-    		ret = parser_node_start(node, s, ppEnd);
-			JUMP_IF(ret == 0, "parser %s's children error",name);
-    	}
+		JUMP_IF(*s!='<', "parser tag %s",name);
+		e = s;
+		s++;
+
+		SKIP_SPACE(s);
+		if(*s=='/')
+		{
+			s++;
+			goto node_end;
+		}
+		else
+		{
+			s = e;
+			ret = parser_node_start(node, s, ppEnd);
+				JUMP_IF(ret == 0, "parser %s's children error",name);
+		}
 
 	}
 
